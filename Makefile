@@ -6,26 +6,35 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/07/19 21:24:59 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/07/23 17:54:38 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = so_long
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+SRCS = core/game.c
+OBJS = $(SRCS:.c=.o)
+
 ifeq ($(shell uname), Linux)
-	INCLUDES = -I/usr/include -Imlx
+	INCLUDES = -I/usr/include -I.
 else
-	INCLUDES = -I/opt/X11/include -Imlx
+	INCLUDES = -I/opt/X11/include -I.
 endif
 
-MLX_DIR = ./mlx
-MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 ifeq ($(shell uname), Linux)
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+	MLX_FLAGS = -L. -lmlx -L/usr/lib/X11 -lXext -lX11
 else
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	MLX_FLAGS = -L. -lmlx_Darwin -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
 endif
 
 
-all: $(MLX_LIB) $(NAME)
+all: libmlx.a $(NAME)
+
+libmlx.a:
+	tar -xvf minilibx-linux.tgz
+	cd minilibx-linux && make && cp libmlx*.a .. && cp mlx.h ..
+	rm -rf minilibx-linux
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
@@ -33,5 +42,13 @@ all: $(MLX_LIB) $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
 
-$(MLX_LIB):
-	@make -C $(MLX_DIR)
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+	rm -f libmlx*.a mlx.h
+
+re: fclean all
+
+.PHONY: all clean fclean re
