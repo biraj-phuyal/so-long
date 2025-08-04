@@ -30,5 +30,7 @@ typedef struct s_data {
 	int		collectibles;
 }	t_data;
 
+// Function declarations
+void	make_map(void);
 
 #endif

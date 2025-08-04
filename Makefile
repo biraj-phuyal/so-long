@@ -6,14 +6,14 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/07/23 17:54:38 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/08/04 21:56:57 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = core/game.c
+SRCS = core/game.c core/make_map.c libft/get_next_line/get_next_line.c libft/ft_printf/ft_printf.c
 OBJS = $(SRCS:.c=.o)
 
 ifeq ($(shell uname), Linux)
