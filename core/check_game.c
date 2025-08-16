@@ -1,24 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   check_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 15:30:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/09 16:10:58 by biphuyal         ###   ########.fr       */
+/*   Created: 2025/08/16 13:50:32 by biphuyal          #+#    #+#             */
+/*   Updated: 2025/08/16 13:51:30 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "so_long.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-# define BUFFER_SIZE 10
-
-char	*get_next_line(int fd);
-
-#endif

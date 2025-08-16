@@ -6,34 +6,31 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:23:07 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/04 22:12:30 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/08/16 13:42:13 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 #include "../mlx.h"
 
-int main(void)
+void initialize_map(t_map *map)
 {
-	t_data	data;
-	t_img	floor_img;
-
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		return (1);
+	map->collectibles = 0;
+	map->exit_x = 0;
+	map->exit_y = 0;
+	map->player_x = 0;
+	map->player_y = 0;
 	
-	make_map();
+}
 
-	floor_img.img = mlx_xpm_file_to_image(data.mlx, "assets/images/so-long-floor.xpm", &floor_img.width, &floor_img.height);
-	if (!floor_img.img)
+int main(int args, char **argv)
+{
+	t_map map;
+
+	if (args == 2)
 	{
-		free(data.mlx);
-		return (1);
+		map.filename = argv[1];
+		initialize_map(&map);
 	}
-	
-	data.win = mlx_new_window(data.mlx, 800, 600, "My Window");
-	if (!data.win)
-		return (free(data.mlx), 1);
-	mlx_loop(data.mlx);
 	return (0);
 }

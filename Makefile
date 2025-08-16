@@ -6,7 +6,7 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/08/04 21:56:57 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/08/09 18:41:45 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ libmlx.a:
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
+run: $(NAME)
+	./$(NAME)
 
 clean:
 	rm -f $(OBJS)
