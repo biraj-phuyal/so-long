@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: biphuyal <biphuyal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 15:30:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/09 16:10:58 by biphuyal         ###   ########.fr       */
+/*   Created: 2025/03/03 18:36:56 by biphuyal          #+#    #+#             */
+/*   Updated: 2025/04/13 13:41:14 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-# define BUFFER_SIZE 10
-
-char	*get_next_line(int fd);
-
-#endif
+int	ft_isalpha(int c)
+{
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+/* 
+int	main(void)
+{
+    char c = 9;
+    printf("%d", ft_isalpha(c));
+} 
+*/

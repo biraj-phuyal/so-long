@@ -8,8 +8,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/get_next_line/get_next_line.h"
-# include "libft/ft_printf/ft_printf.h"
+# include "libft/libft.h"
 
 # define MAX_SIZE 42
 # define TILE_SIZE 64
@@ -33,7 +32,11 @@ typedef struct s_map {
 	t_img	*img;
 	char	*filename;
 	char	*line;
+	char	*file;
 	char	**map;
+	char	**copy;
+	int		y;
+	int		x;
 	int		player_x;
 	int		player_y;
 	int		exit_x;
@@ -41,6 +44,6 @@ typedef struct s_map {
 	int		collectibles;
 }	t_map;
 
-char	*make_map(void);
+
 
 #endif
