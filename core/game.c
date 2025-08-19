@@ -6,19 +6,20 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:23:07 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/19 11:51:34 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/08/19 14:21:09 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "../mlx.h"
 
 void initialize_map(t_map *map)
 {
-	map->collectibles = 0;
-	map->exit = 0;
-	map->player = 0;
 	map->x = 0;
+	map->p = 0;
+	map->exit = 0;
+	map->player.x = 0;
+	map->player.y = 0;
+	map->collectibles = 0;
 }
 
 int main(int args, char **argv)

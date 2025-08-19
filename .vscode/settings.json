@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "libft.h": "c",
+        "__assert": "c",
+        "__config": "c",
+        "vector": "c"
+    }
+}
