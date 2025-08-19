@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 13:50:32 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/19 13:18:08 by biphuyal         ###   ########.fr       */
+/*   Created: 2025/08/19 13:11:42 by biphuyal          #+#    #+#             */
+/*   Updated: 2025/08/19 13:13:44 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void check_wall(t_map *map)
+int	free_the_array(char **ret, int i)
 {
-	int x;
-	int y;
-
-	x = 0;
-	y = 1;
-	while(map->map[0][x] == '1' && map->map[1][x])
-		x++;
-	if (map->map[0][x] != '\0')
-		error_on_wall(map);
-	
+	while (i > 0)
+		free(ret[--i]);
+	free(ret);
+	return (0);
 }
 
-void checks(t_map *map)
+void	exit_after_free(t_map *map)
 {
-	check_wall(&map);
+	if (map->map)
+		free(map->map);
+	if (map->copy)
+		free(map->copy);
+	if (map->file)
+		free(map->file);
+	if (map->line)
+		free(map->file);
+	exit(EXIT_FAILURE);
 }
