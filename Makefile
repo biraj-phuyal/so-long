@@ -6,14 +6,14 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/08/16 15:36:07 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/08/19 11:45:40 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = core/game.c core/map_array.c libft/get_next_line/get_next_line.c libft/ft_printf/ft_printf.c
+SRCS = core/game.c core/map-array.c libft/get_next_line.c libft/ft_strjoin.c libft/ft_split.c libft/ft_strlcpy.c
 OBJS = $(SRCS:.c=.o)
 
 ifeq ($(shell uname), Linux)
@@ -41,8 +41,6 @@ libmlx.a:
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
-run: $(NAME)
-	./$(NAME)
 
 clean:
 	rm -f $(OBJS)

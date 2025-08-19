@@ -6,16 +6,11 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:30:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/19 10:46:27 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:00:42 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-
-#define BUFFER_SIZE 10
+#include "get_next_line.h"
 
 int	ft_strlen(const char *s)
 {
@@ -49,7 +44,7 @@ char	*ft_strndup(const char *s, size_t n)
 	return (dup);
 }
 
-char	*ft_strjoin(char *str, char *dup)
+char	*my_strjoin(char *str, char *dup)
 {
 	size_t	i;
 	size_t	j;
@@ -96,7 +91,7 @@ void	move_buffer(char *buff, char **str)
 		buff[j++] = buff[i++];
 	buff[j] = '\0';
 	temp = *str;
-	*str = ft_strjoin(temp, new);
+	*str = my_strjoin(temp, new);
 	free(new);
 }
 

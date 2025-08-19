@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
+/*   Updated: 2025/08/19 12:02:41 by biphuyal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "mlx.h"
+# include "../mlx.h"
 # include <math.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -9,24 +21,24 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+# include "libft/get_next_line.h"
 
-# define MAX_SIZE 42
-# define TILE_SIZE 64
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 512
 
-typedef struct s_img {
+typedef struct s_img
+{
 	void	*img;
 	int		width;
 	int		height;
 }	t_img;
 
-typedef struct s_player {
+typedef struct s_player
+{
 	int x;
 	int y;
 }	t_player;
 
-typedef struct s_map {
+typedef struct s_map 
+{
 	void	*mlx;
 	void	*win;
 	t_img	*img;
@@ -37,13 +49,12 @@ typedef struct s_map {
 	char	**copy;
 	int		y;
 	int		x;
-	int		player_x;
-	int		player_y;
-	int		exit_x;
-	int		exit_y;
+	int		player;
+	int		exit;
 	int		collectibles;
 }	t_map;
 
-
+void map_array(t_map *map);
+void checks(t_map *map);
 
 #endif
