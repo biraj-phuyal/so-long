@@ -6,12 +6,15 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/19 14:19:54 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/09/27 15:43:46 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define IMG_PXL 50
+# define WND_NAME "so_long"
 
 # include <math.h>
 # include <fcntl.h>
@@ -50,6 +53,8 @@ typedef struct s_map
 	int		y;
 	int		x;
 	int		p;
+	int		c;
+	int		e;
 	int		exit;
 	int		collectibles;
 	t_player	player;
