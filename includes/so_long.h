@@ -6,14 +6,14 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/09/27 15:43:46 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/17 15:11:16 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define IMG_PXL 50
+# define IMG_PXL 64
 # define WND_NAME "so_long"
 
 # include <math.h>
@@ -32,19 +32,27 @@ typedef struct s_img
 	void	*img;
 	int		width;
 	int		height;
+	int		*wall;
+	int		*player;
+	int		*floor;
+	int		*collectables;
+	int		*exit;
+
 }	t_img;
 
 typedef struct s_player
 {
 	int x;
 	int y;
+	int z;
+	int i;
 }	t_player;
 
 typedef struct s_map 
 {
 	void	*mlx;
 	void	*win;
-	t_img	*img;
+	t_img	img;
 	char	*filename;
 	char	*line;
 	char	*file;

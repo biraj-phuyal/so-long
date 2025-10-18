@@ -6,7 +6,7 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/09/27 15:50:29 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/10/17 11:52:52 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRCS = core/game.c core/map-array.c core/checks.c core/error.c core/free.c libft/get_next_line.c libft/ft_strjoin.c libft/ft_split.c libft/ft_strlcpy.c
 OBJS = $(SRCS:.c=.o)
-RUN = run
 ifeq ($(shell uname), Linux)
 	INCLUDES = -I/usr/include -I.
 else
@@ -41,9 +40,6 @@ libmlx.a:
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
-	
-$(RUN): $(NAME)
-
 
 clean:
 	rm -f $(OBJS)

@@ -6,25 +6,23 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 13:50:32 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/09/27 15:44:39 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/17 11:13:51 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 void check_filename(char *filename)
 {
 	int	i;
 	i = ft_strlen(filename);
-	while (filename[i] != '.')
-		i++;
-	if (filename[i] != 'b')
+	while (filename[i - 4] != '.')
 		error_on_filename();
-	i++;
-	if (filename[i] != 'e')
+	if (filename[i - 3] != 'b')
 		error_on_filename();
-	i++;
-	if (filename[i] != 'r')
+	if (filename[i - 2] != 'e')
+		error_on_filename();
+	if (filename[i - 1] != 'r')
 		error_on_filename();
 }
 

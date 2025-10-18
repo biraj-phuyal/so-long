@@ -6,11 +6,11 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:29:05 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/09/22 15:31:40 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/17 10:54:52 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 void player(t_map *map)
 {
