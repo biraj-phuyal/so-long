@@ -6,11 +6,11 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:29:05 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/21 17:12:21 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:30:00 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "includes/so_long.h"
 
 void convert_recourses_to_image(t_game *game)
 {

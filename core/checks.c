@@ -6,11 +6,11 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 13:50:32 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/21 17:32:25 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:30:00 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "includes/so_long.h"
 
 void check_filename(char *filename)
 {
