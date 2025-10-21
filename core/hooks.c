@@ -6,21 +6,24 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:29:05 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/17 10:54:52 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:13:23 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void player(t_map *map)
+void player(t_game *game)
 {
-	map->player.y = 0;
-	map->player.x = 0;
-	while (map->player.y < map->y)
+	game->player.right = 0;
+	game->player.left = 0;
+	while (game->player.right < game->y)
 	{
-		while (map-player.x < map->x)
+		while (game->player.left < game->x)
 		{
 			
+			game->player.left++;
 		}
+		game->player.left = 0;
+		game->player.right++;
 	}
 }

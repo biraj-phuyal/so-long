@@ -6,38 +6,26 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:19 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/17 10:54:52 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:32:24 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void map_array(t_map *map)
+void map_array(t_game *game)
 {
-	int fd;
-
-	map->y = 0;
-	map->line = "";
-	map->file = NULL;
-	fd = open(map->filename, O_RDONLY);
-	while (map->line)
+	game->map = ft_split(game->file, '\n');
+	game->copy = ft_split(game->file, '\n');
+	if (!game->map || !game->copy)
 	{
-		map->line = get_next_line(fd);
-		if (map->line == NULL)
-			break ;
-		map->file = ft_strjoin(map->file, map->line);
-		free(map->line);
-		if (!map->file)
-			free(map->file);
-		map->y++;
+		if (game->map)
+			free_the_array(game->map, game->y);
+		if (game->copy)
+			free_the_array(game->copy, game->y);
+		free(game->file);
+		game->file = NULL;
+		exit(EXIT_FAILURE);
 	}
-	close(fd);
-	map->map = ft_split(map->file, '\n');
-	map->copy = ft_split(map->file, '\n');
-	if (!map->map || !map->copy)
-	{
-		free(map->map);
-		free(map->copy);
-	}
-	free(map->file);
+	free(game->file);
+	game->file = NULL;
 }

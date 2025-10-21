@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: biphuyal <biphuyal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:37:54 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/04/13 20:16:29 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:09:45 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(void)
 	ft_lstadd_back(&original, ft_lstnew(strdup("two")));
 	ft_lstadd_back(&original, ft_lstnew(strdup("three")));
 
-	t_list *mapped = ft_lstmap(original, my_map_func, my_del_func);
+	t_list *gameped = ft_lstmap(original, my_map_func, my_del_func);
 
 	t_list *temp = mapped;
 	while (temp)

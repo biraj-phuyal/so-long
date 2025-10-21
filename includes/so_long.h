@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/17 15:11:16 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:11:07 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ typedef struct s_img
 	int		width;
 	int		height;
 	int		*wall;
-	int		*player;
+	int		*player_up;
+	int		*player_down;
+	int		*player_right;
+	int		*player_left;
 	int		*floor;
 	int		*collectables;
 	int		*exit;
@@ -42,13 +45,13 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	int x;
-	int y;
-	int z;
-	int i;
+	int left;
+	int right;
+	int up;
+	int down;
 }	t_player;
 
-typedef struct s_map 
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
@@ -66,17 +69,17 @@ typedef struct s_map
 	int		exit;
 	int		collectibles;
 	t_player	player;
-}	t_map;
+}	t_game;
 
-void 	checks(t_map *map);
-void 	map_array(t_map *map);
-void 	check_wall(t_map *map);
+void	load_map(t_game *game);
+void 	map_array(t_game *game);
+void 	check_wall(t_game *game);
 void	error_on_filename(void);
-void	error_on_wall(t_map *map);
-void	error_on_size(t_map *map);
-void	error_on_map_elements(t_map *map);
+void	error_on_wall(t_game *game);
+void	error_on_size(t_game *game);
+void	error_on_map_elements(t_game *game);
 void	error_on_openfile(void);
 int		free_the_array(char **ret, int i);
-void	exit_after_free(t_map *map);
+void	exit_after_free(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:11:42 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/17 10:54:52 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:16:30 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int	free_the_array(char **ret, int i)
 	return (0);
 }
 
-void	exit_after_free(t_map *map)
+void	exit_after_free(t_game *game)
 {
-	if (map->map)
-		free(map->map);
-	if (map->copy)
-		free(map->copy);
-	if (map->file)
-		free(map->file);
-	if (map->line)
-		free(map->file);
+	if (game->map)
+		free_the_array(game->map, game->y);
+	if (game->copy)
+		free_the_array(game->copy, game->y);
+	if (game->file)
+		free(game->file);
+	if (game->line)
+		free(game->line);
 	exit(EXIT_FAILURE);
 }

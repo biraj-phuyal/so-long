@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 13:50:32 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/17 11:13:51 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:32:25 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void check_filename(char *filename)
 {
 	int	i;
 	i = ft_strlen(filename);
-	while (filename[i - 4] != '.')
+	if (i < 4)
+		error_on_filename();
+	if (filename[i - 4] != '.')
 		error_on_filename();
 	if (filename[i - 3] != 'b')
 		error_on_filename();
@@ -27,33 +29,34 @@ void check_filename(char *filename)
 }
 
 
-void check_elements_of_map(t_map *map)
+void check_elements_of_map(t_game *game)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < map->y)
+	while (y < game->y)
 	{
 		x = 0;
-		while (x < map->x)
+		while (x < game->x)
 		{
-			if (map->map[y][x] == 'C')
-				map->c += 1;
-			else if (map->map[y][x] == 'E')
-				map->e += 1;
-			else if (map->map[y][x] == 'P')
-				map->p += 1;
-			else
-				error_on_map_elements(map);
+			if (game->map[y][x] == 'C')
+				game->c += 1;
+			else if (game->map[y][x] == 'E')
+				game->e += 1;
+			else if (game->map[y][x] == 'P')
+				game->p += 1;
+			else if (game->map[y][x] != '1' && game->map[y][x] != '0')
+				error_on_map_elements(game);
+			x++;
 		}
 		y++;
 	}
-	if (map->c < 1 || map->e < 1 || map->p != 1)
-		error_on_map_elements(map);
+	if (game->c < 1 || game->e < 1 || game->p != 1)
+		error_on_map_elements(game);
 }
 
-void check_size(t_map *map)
+void check_size(t_game *game)
 {
 	int	x;
 	int	y;
@@ -61,44 +64,69 @@ void check_size(t_map *map)
 
 	x = 0;
 	y = 0;
-	max = ft_strlen(map->map[y]);
-	while (y < map->y)
+	max = ft_strlen(game->map[y]);
+	while (y < game->y)
 	{
-		x = ft_strlen(map->map[y]);
+		x = ft_strlen(game->map[y]);
 		if (max != x)
-			error_on_size(map);
+			error_on_size(game);
 		y++;
 	}
-	map->x = max;
+	game->x = max;
 }
 
-void check_wall(t_map *map)
+void check_wall(t_game *game)
 {
 	int x;
 	int y;
 
 	x = 0;
 	y = 1;
-	while(map->map[0][x] == '1' && map->map[1][x])
+	while(game->map[0][x] == '1' && game->map[0][x])
 		x++;
-	if (map->map[0][x] != '\0')
-		error_on_wall(map);
-	while (y < map->y)
+	if (game->map[0][x] != '\0')
+		error_on_wall(game);
+	while (y < game->y)
 	{
-		if (map->map[y][0] != '1' || map->map[y][x - 1] != '1')
-			error_on_wall(map);
+		if (game->map[y][0] != '1' || game->map[y][game->x - 1] != '1')
+			error_on_wall(game);
 		y++;
 	}
 	x = 0;
-	while (map->map[y - 1][x] == '1')
+	while (game->map[y - 1][x] == '1' && game->map[y - 1][x])
 		x++;
-	if (map->map[y - 1][x] != '\0')
-		error_on_wall(map);
+	if (game->map[y - 1][x] != '\0')
+		error_on_wall(game);
 }
 
-void checks(t_map *map)
+void open_map(t_game *game)
 {
-	check_wall(map);
-	check_filename(map->filename);
-	check_size(map);
+	int		fd;
+	char	*line;
+
+	fd = open(game->filename, O_RDONLY);
+	if (fd < 0)
+		error_on_filename();
+	game->file = ft_strdup("");
+	game->y = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		game->file = ft_strjoin(game->file, line);
+		free(line);
+		game->y++;
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	map_array(game);
+}
+
+void load_map(t_game *game)
+{
+	check_filename(game->filename);
+	open_map(game);
+	check_size(game);
+	check_wall(game);
+	check_elements_of_map(game);
 }

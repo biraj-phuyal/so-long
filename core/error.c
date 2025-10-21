@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 13:10:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/17 10:54:52 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:12:30 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	error_on_filename(void)
 	exit(EXIT_FAILURE);
 }
 
-void	error_on_wall(t_map *map)
+void	error_on_wall(t_game *game)
 {
 	write(2, "failed in wall\n", 15);
-	free_the_array(map->map, map->y);
-	free_the_array(map->copy, map->y);
+	free_the_array(game->map, game->y);
+	free_the_array(game->copy, game->y);
 	exit(EXIT_FAILURE);
 }
 
@@ -32,18 +32,18 @@ void	error_on_openfile(void)
 	exit(EXIT_FAILURE);
 }
 
-void	error_on_size(t_map *map)
+void	error_on_size(t_game *game)
 {
 	write(2, "failed in size\n", 15);
-	free_the_array(map->map, map->y);
-	free_the_array(map->copy, map->y);
+	free_the_array(game->map, game->y);
+	free_the_array(game->copy, game->y);
 	exit(EXIT_FAILURE);
 }
 
-void	error_on_map_elements(t_map *map)
+void	error_on_map_elements(t_game *game)
 {
 	write(2, "failed in elements\n", 19);
-	free_the_array(map->map, map->y);
-	free_the_array(map->copy, map->y);
+	free_the_array(game->map, game->y);
+	free_the_array(game->copy, game->y);
 	exit(EXIT_FAILURE);
 }
