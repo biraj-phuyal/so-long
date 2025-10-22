@@ -6,11 +6,11 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 13:50:32 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/21 18:30:00 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/22 12:55:02 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 void check_filename(char *filename)
 {
@@ -99,33 +99,10 @@ void check_wall(t_game *game)
 		error_on_wall(game);
 }
 
-void open_map(t_game *game)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(game->filename, O_RDONLY);
-	if (fd < 0)
-		error_on_filename();
-	game->file = ft_strdup("");
-	game->y = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		game->file = ft_strjoin(game->file, line);
-		free(line);
-		game->y++;
-		line = get_next_line(fd);
-	}
-	free(line);
-	close(fd);
-	map_array(game);
-}
-
 void load_map(t_game *game)
 {
 	check_filename(game->filename);
-	open_map(game);
+	map_array(game);
 	check_size(game);
 	check_wall(game);
 	check_elements_of_map(game);

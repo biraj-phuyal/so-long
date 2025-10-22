@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/21 17:11:07 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/21 23:57:16 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,18 @@
 
 typedef struct s_img
 {
-	void	*img;
-	int		width;
-	int		height;
-	int		*wall;
-	int		*player_up;
-	int		*player_down;
-	int		*player_right;
-	int		*player_left;
-	int		*floor;
-	int		*collectables;
-	int		*exit;
-
+	void		*wall;
+	void		*player;
+	void		*player_left;
+	void		*floor;
+	void		*collectables;
+	void		*exit;
 }	t_img;
 
 typedef struct s_player
 {
 	int left;
 	int right;
-	int up;
-	int down;
 }	t_player;
 
 typedef struct s_game
