@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:36:10 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/19 11:08:33 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/23 14:10:27 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,25 @@
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int		i;
-	int		j;
-	int		total_length;
-	char	*string;
+	char	*str;
+	size_t	s1len;
+	size_t	s2len;
 
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	j = 0;
-	total_length = ft_strlen(s1) + ft_strlen(s2);
-	string = (char *)malloc(total_length + 1);
-	if (!string)
-		return (NULL);
-	while (s1[i])
+	if (!s1)
 	{
-		string[i] = s1[i];
-		i++;
+		s1 = (char *)malloc(sizeof(char));
+		s1[0] = '\0';
 	}
-	while (s2[j])
-		string[i++] = s2[j++];
-	string[i] = '\0';
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	str = malloc(sizeof(char) * (s1len + s2len + 1));
+	if (!str)
+		return (NULL);
+	ft_memcpy(str, s1, s1len);
+	ft_memcpy(str + s1len, s2, s2len + 1);
+	str[s1len + s2len] = '\0';
 	free(s1);
-	return (string);
+	return (str);
 }
 /* 
 int	main(void) {
