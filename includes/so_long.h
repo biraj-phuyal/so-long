@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/21 23:57:16 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:35:25 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,55 +23,44 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../mlx.h"
+# include <stdbool.h>
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 
-
 typedef struct s_img
 {
-	void		*wall;
-	void		*player;
-	void		*player_left;
-	void		*floor;
-	void		*collectables;
-	void		*exit;
+	void	*ptr;
+	void	*data;
+	int		bpp;
+	int		size_l;
+	int		endian;
 }	t_img;
 
-typedef struct s_player
+typedef struct s_assets
 {
-	int left;
-	int right;
-}	t_player;
+	t_img		*wall;
+	t_img		*player;
+	t_img		*player_left;
+	t_img		*floor;
+	t_img		*collectables;
+	t_img		*exit;
+}	t_assets;
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	t_img	img;
-	char	*filename;
-	char	*line;
-	char	*file;
+	t_assets	assets;
 	char	**map;
-	char	**copy;
-	int		y;
-	int		x;
-	int		p;
-	int		c;
-	int		e;
-	int		exit;
-	int		collectibles;
-	t_player	player;
 }	t_game;
 
-void	load_map(t_game *game);
-void 	map_array(t_game *game);
-void 	check_wall(t_game *game);
-void	error_on_filename(void);
-void	error_on_wall(t_game *game);
-void	error_on_size(t_game *game);
-void	error_on_map_elements(t_game *game);
-void	error_on_openfile(void);
-int		free_the_array(char **ret, int i);
-void	exit_after_free(t_game *game);
+t_img	*load_image_from_file(void *mlx, char *path);
+void	free_image(void *mlx, t_img *image);
+void	ft_exit(t_game *game, int keycode);
+char	**strv_new(size_t size);
+char	**strv_join(char **strv, char **str);
+bool	load_map(t_game *game, char *filename);
+size_t	strv_len(char **strv);
+void	strv_free(char **strv);
 
 #endif

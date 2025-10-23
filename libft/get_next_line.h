@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:34 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/19 14:12:35 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:33:00 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "libft.h"
 
 
 # define BUFFER_SIZE 10

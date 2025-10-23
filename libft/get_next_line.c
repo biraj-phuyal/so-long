@@ -6,23 +6,11 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:30:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/08/19 12:00:42 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:32:52 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	ft_strlen(const char *s)
-{
-	int	len;
-
-	if (!s)
-		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
 
 char	*ft_strndup(const char *s, size_t n)
 {
