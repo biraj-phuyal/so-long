@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:23:07 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/23 20:57:58 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/23 21:07:29 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int main(int args, char **argv)
 		write(2, "Error\nCould not load map\n", 26);
 		ft_exit(&game, EXIT_FAILURE);
 	}
-	game.win = mlx_new_window(game.mlx, strv_len(game.map) * IMG_PXL, ft_strlen(game.map[0]) * IMG_PXL, WND_NAME);
+	game.win = mlx_new_window(game.mlx, game.map_width * IMG_PXL, game.map_height * IMG_PXL, WND_NAME);
 	mlx_key_hook(game.win, (void *)key_hook, &game);
 	mlx_loop_hook(game.mlx, (void *)loop, &game);
 	mlx_hook(game.win, 17, 0, (void *)exit_game, &game);

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/23 20:35:25 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/23 21:07:28 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,18 @@ typedef struct s_game
 	void	*win;
 	t_assets	assets;
 	char	**map;
+	int		map_width;
+	int		map_height;
 }	t_game;
+
+typedef struct s_map_check
+{
+	int	player_count;
+	int	exit_count;
+	int	collectible_count;
+	int	player_x;
+	int	player_y;
+}	t_map_check;
 
 t_img	*load_image_from_file(void *mlx, char *path);
 void	free_image(void *mlx, t_img *image);
@@ -62,5 +73,7 @@ char	**strv_join(char **strv, char **str);
 bool	load_map(t_game *game, char *filename);
 size_t	strv_len(char **strv);
 void	strv_free(char **strv);
+bool	validate_map(t_game *game);
+void	print_error_and_exit(t_game *game, char *message);
 
 #endif
