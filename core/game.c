@@ -6,13 +6,13 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:23:07 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/23 21:07:29 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/30 18:22:24 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void load_assets(t_game *game)
+void	load_assets(t_game *game)
 {
 	game->assets.floor = load_image_from_file(game->mlx,
 			"assets/images/so-long-floor.xpm");
@@ -26,7 +26,7 @@ void load_assets(t_game *game)
 			"assets/images/player.xpm");
 	game->assets.player_left = load_image_from_file(game->mlx,
 			"assets/images/player_left.xpm");
-	if (!game->assets.floor || !game->assets.wall || !game->assets.collectables 
+	if (!game->assets.floor || !game->assets.wall || !game->assets.collectables
 		|| !game->assets.exit || !game->assets.player || !game->assets.player_left)
 	{
 		write(2, "Error\nFailed to load assets\n", 29);
@@ -77,70 +77,9 @@ void	loop(t_game *game)
 	render_map(game);
 }
 
-#define ESC_KEY 65307
-#define W_KEY 119
-#define A_KEY 97
-#define S_KEY 115
-#define D_KEY 100
-
-void	move_player(t_game *game, int keycode)
+int	main(int args, char **argv)
 {
-	int	i;
-	int	j;
-	int	new_i;
-	int	new_j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'P')
-			{
-				new_i = i;
-				new_j = j;
-				if (keycode == W_KEY)
-					new_i--;
-				else if (keycode == A_KEY)
-					new_j--;
-				else if (keycode == S_KEY)
-					new_i++;
-				else if (keycode == D_KEY)
-					new_j++;
-				if (game->map[new_i][new_j] != '1' && game->map[new_i][new_j] != 'E')
-				{
-					game->map[i][j] = '0';
-					game->map[new_i][new_j] = 'P';
-				}
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	key_hook(int keycode, t_game *game)
-{
-	if (keycode == ESC_KEY)
-		ft_exit(game, EXIT_SUCCESS);
-	if (keycode == W_KEY || keycode == A_KEY
-		|| keycode == S_KEY || keycode == D_KEY)
-	{
-		move_player(game, keycode);
-	}
-}
-
-int	exit_game(t_game *game)
-{
-	ft_exit(game, EXIT_SUCCESS);
-	return (0);
-}
-
-int main(int args, char **argv)
-{
-	static t_game game;
+	static t_game	game;
 
 	if (args != 2)
 	{
@@ -154,7 +93,8 @@ int main(int args, char **argv)
 		write(2, "Error\nCould not load map\n", 26);
 		ft_exit(&game, EXIT_FAILURE);
 	}
-	game.win = mlx_new_window(game.mlx, game.map_width * IMG_PXL, game.map_height * IMG_PXL, WND_NAME);
+	game.win = mlx_new_window(game.mlx, game.map_width * IMG_PXL,
+			game.map_height * IMG_PXL, WND_NAME);
 	mlx_key_hook(game.win, (void *)key_hook, &game);
 	mlx_loop_hook(game.mlx, (void *)loop, &game);
 	mlx_hook(game.win, 17, 0, (void *)exit_game, &game);

@@ -6,14 +6,23 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/10/23 20:33:44 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/10/30 20:10:55 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRCS = ${wildcard core/*.c} ${wildcard utils/*.c} ${wildcard hooks/*.c} ${wildcard libft/*.c}
+SRCS = core/free.c \
+	core/game.c \
+	core/hooks.c \
+	core/map.c \
+	core/map_validation.c \
+	core/player.c \
+	core/strv.c \
+	core/map_utils.c \
+	core/image.c \
+	${wildcard libft/*.c}
 OBJS = $(SRCS:.c=.o)
 RUN = run
 ifeq ($(shell uname), Linux)
