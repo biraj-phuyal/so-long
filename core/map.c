@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:17:43 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/30 18:22:03 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:49:05 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,61 @@ bool	validate_map(t_game *game)
 		print_error_and_exit(game, "Map must have exactly one exit");
 	if (check.collectible_count < 1)
 		print_error_and_exit(game, "Map must have at least one collectible");
+	game->collectibles_remaining = check.collectible_count;
 	check_walls(game);
 	check_valid_path(game, &check);
 	return (true);
 }
 
+static void	process_map_line(char *line, char ***map, size_t *first_len,
+				t_game *game)
+{
+	char	*tmp[2];
+	size_t	len;
+
+	len = ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		line[len - 1] = '\0';
+	len = ft_strlen(line);
+	if (*first_len == 0)
+		*first_len = len;
+	else if (len != *first_len)
+	{
+		free(line);
+		strv_free(*map);
+		print_error_and_exit(game, "Map is not rectangular");
+	}
+	tmp[0] = line;
+	tmp[1] = NULL;
+	*map = strv_join(*map, tmp);
+}
+
+static char	**read_map_file(int fd, t_game *game)
+{
+	char	*line;
+	char	**map;
+	size_t	first_len;
+
+	map = NULL;
+	first_len = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		process_map_line(line, &map, &first_len, game);
+		line = get_next_line(fd);
+	}
+	return (map);
+}
+
 bool	load_map(t_game *game, char *filename)
 {
 	int		fd;
-	char	*line;
-	char	*tmp[2];
 	char	**map;
-	size_t	len;
-	size_t	first_len;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		print_error_and_exit(game, "Could not open map file");
-	line = get_next_line(fd);
-	map = NULL;
-	first_len = 0;
-	while (line)
-	{
-		len = ft_strlen(line);
-		if (len > 0 && line[len - 1] == '\n')
-			line[len - 1] = '\0';
-		len = ft_strlen(line);
-		if (first_len == 0)
-			first_len = len;
-		else if (len != first_len)
-		{
-			free(line);
-			strv_free(map);
-			close(fd);
-			print_error_and_exit(game, "Map is not rectangular");
-		}
-		tmp[0] = line;
-		tmp[1] = NULL;
-		map = strv_join(map, tmp);
-		line = get_next_line(fd);
-	}
+	map = read_map_file(fd, game);
 	close(fd);
 	game->map = map;
 	return (validate_map(game));

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/30 18:22:59 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:45:22 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 
+typedef struct s_pos
+{
+	int	i;
+	int	j;
+}	t_pos;
+
 typedef struct s_img
 {
 	void	*ptr;
@@ -41,24 +47,21 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_assets
+typedef struct s_game
 {
+	void		*mlx;
+	void		*win;
 	t_img		*wall;
 	t_img		*player;
 	t_img		*player_left;
 	t_img		*floor;
 	t_img		*collectables;
 	t_img		*exit;
-}	t_assets;
-
-typedef struct s_game
-{
-	void	*mlx;
-	void	*win;
-	t_assets	assets;
-	char	**map;
-	int		map_width;
-	int		map_height;
+	char		**map;
+	int			map_width;
+	int			map_height;
+	int			player_direction;
+	int			collectibles_remaining;
 }	t_game;
 
 typedef struct s_map_check
@@ -87,5 +90,10 @@ void	check_valid_path(t_game *game, t_map_check *check);
 void	move_player(t_game *game, int keycode);
 void	key_hook(int keycode, t_game *game);
 int		exit_game(t_game *game);
+void	loop(t_game *game);
+void	load_assets(t_game *game);
+char	**duplicate_map(t_game *game);
+void	flood_fill(char **map_copy, int x, int y, int *collectibles);
+void	render_map(t_game *game);
 
 #endif

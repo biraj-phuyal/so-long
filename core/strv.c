@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:19 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/23 20:36:58 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:46:06 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ char	**strv_new(size_t size)
 	return (strv);
 }
 
+static void	copy_strv_elements(char **dest, char **src, size_t *k)
+{
+	size_t	i;
+
+	i = 0;
+	while (src && src[i])
+	{
+		dest[*k] = src[i];
+		(*k)++;
+		i++;
+	}
+}
+
 char	**strv_join(char **strv, char **str)
 {
 	size_t	i;
@@ -48,12 +61,8 @@ char	**strv_join(char **strv, char **str)
 	if (!new_strv)
 		return (NULL);
 	k = 0;
-	i = 0;
-	while (strv && strv[i])
-		new_strv[k++] = strv[i++];
-	i = 0;
-	while (str && str[i])
-		new_strv[k++] = str[i++];
+	copy_strv_elements(new_strv, strv, &k);
+	copy_strv_elements(new_strv, str, &k);
 	if (strv)
 		free(strv);
 	return (new_strv);

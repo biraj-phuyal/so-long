@@ -6,7 +6,7 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/10/30 20:10:55 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/10/31 12:16:50 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,14 @@ CFLAGS = -Wall -Wextra -Werror -g
 SRCS = core/free.c \
 	core/game.c \
 	core/hooks.c \
+	core/main.c \
 	core/map.c \
 	core/map_validation.c \
 	core/player.c \
 	core/strv.c \
 	core/map_utils.c \
 	core/image.c \
+	core/utils.c \
 	${wildcard libft/*.c}
 OBJS = $(SRCS:.c=.o)
 RUN = run
