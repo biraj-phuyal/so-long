@@ -6,15 +6,25 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/10/23 14:14:20 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/10/31 12:16:50 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRCS = core/game.c core/map-array.c core/checks.c core/error.c core/free.c core/hooks.c \
-	   libft/get_next_line.c libft/ft_strjoin.c libft/ft_split.c libft/ft_strlcpy.c libft/ft_strdup.c libft/ft_memcpy.c
+SRCS = core/free.c \
+	core/game.c \
+	core/hooks.c \
+	core/main.c \
+	core/map.c \
+	core/map_validation.c \
+	core/player.c \
+	core/strv.c \
+	core/map_utils.c \
+	core/image.c \
+	core/utils.c \
+	${wildcard libft/*.c}
 OBJS = $(SRCS:.c=.o)
 RUN = run
 ifeq ($(shell uname), Linux)

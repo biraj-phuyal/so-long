@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/21 23:57:16 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:45:22 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # define IMG_PXL 64
 # define WND_NAME "so_long"
+# define ESC_KEY 65307
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
 
 # include <math.h>
 # include <fcntl.h>
@@ -23,55 +28,72 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../mlx.h"
+# include <stdbool.h>
 # include "libft/libft.h"
 # include "libft/get_next_line.h"
 
+typedef struct s_pos
+{
+	int	i;
+	int	j;
+}	t_pos;
 
 typedef struct s_img
 {
-	void		*wall;
-	void		*player;
-	void		*player_left;
-	void		*floor;
-	void		*collectables;
-	void		*exit;
+	void	*ptr;
+	void	*data;
+	int		bpp;
+	int		size_l;
+	int		endian;
 }	t_img;
-
-typedef struct s_player
-{
-	int left;
-	int right;
-}	t_player;
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	t_img	img;
-	char	*filename;
-	char	*line;
-	char	*file;
-	char	**map;
-	char	**copy;
-	int		y;
-	int		x;
-	int		p;
-	int		c;
-	int		e;
-	int		exit;
-	int		collectibles;
-	t_player	player;
+	void		*mlx;
+	void		*win;
+	t_img		*wall;
+	t_img		*player;
+	t_img		*player_left;
+	t_img		*floor;
+	t_img		*collectables;
+	t_img		*exit;
+	char		**map;
+	int			map_width;
+	int			map_height;
+	int			player_direction;
+	int			collectibles_remaining;
 }	t_game;
 
-void	load_map(t_game *game);
-void 	map_array(t_game *game);
-void 	check_wall(t_game *game);
-void	error_on_filename(void);
-void	error_on_wall(t_game *game);
-void	error_on_size(t_game *game);
-void	error_on_map_elements(t_game *game);
-void	error_on_openfile(void);
-int		free_the_array(char **ret, int i);
-void	exit_after_free(t_game *game);
+typedef struct s_map_check
+{
+	int	player_count;
+	int	exit_count;
+	int	collectible_count;
+	int	player_x;
+	int	player_y;
+}	t_map_check;
+
+t_img	*load_image_from_file(void *mlx, char *path);
+void	free_image(void *mlx, t_img *image);
+void	ft_exit(t_game *game, int keycode);
+char	**strv_new(size_t size);
+char	**strv_join(char **strv, char **str);
+bool	load_map(t_game *game, char *filename);
+size_t	strv_len(char **strv);
+void	strv_free(char **strv);
+bool	validate_map(t_game *game);
+void	print_error_and_exit(t_game *game, char *message);
+bool	is_valid_char(char c);
+void	count_map_elements(t_game *game, t_map_check *check);
+void	check_walls(t_game *game);
+void	check_valid_path(t_game *game, t_map_check *check);
+void	move_player(t_game *game, int keycode);
+void	key_hook(int keycode, t_game *game);
+int		exit_game(t_game *game);
+void	loop(t_game *game);
+void	load_assets(t_game *game);
+char	**duplicate_map(t_game *game);
+void	flood_fill(char **map_copy, int x, int y, int *collectibles);
+void	render_map(t_game *game);
 
 #endif
