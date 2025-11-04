@@ -6,13 +6,13 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:00:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/31 16:42:43 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:03:36 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	check_and_update_element(t_game *game, t_map_check *check,
+void	check_and_update_element(t_game *game, t_map_check *check,
 				char c, t_pos pos)
 {
 	if (!is_valid_char(c))

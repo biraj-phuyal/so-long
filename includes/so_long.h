@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/31 16:45:22 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:07:03 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ void	loop(t_game *game);
 void	load_assets(t_game *game);
 char	**duplicate_map(t_game *game);
 void	flood_fill(char **map_copy, int x, int y, int *collectibles);
+void	count_map_elements(t_game *game, t_map_check *check);
+void	check_and_update_element(t_game *game,
+			t_map_check *check, char c, t_pos pos);
 void	render_map(t_game *game);
 
 #endif
