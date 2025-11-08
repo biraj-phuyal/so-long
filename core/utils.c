@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:10:45 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/04 17:06:05 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/08 23:12:18 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**duplicate_map(t_game *game)
 
 void	flood_fill(char **map_copy, int x, int y, int *collectibles)
 {
-	if (map_copy[y][x] == '1' || map_copy[y][x] == 'V')
+	if (map_copy[y][x] == '1' || map_copy[y][x] == 'V' || map_copy[y][x] == 'E')
 		return ;
 	if (map_copy[y][x] == 'C')
 		(*collectibles)++;

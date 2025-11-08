@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:00:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/06 21:48:36 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/08 23:12:17 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	check_walls(t_game *game)
 	}
 }
 
-static bool	check_exit_found(char **map_copy, char **map)
+static bool	is_exit_reachable(char **map_copy, char **map)
 {
 	int		i;
 	int		j;
@@ -85,8 +85,14 @@ static bool	check_exit_found(char **map_copy, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'E' && map_copy[i][j] == 'V')
-				return (true);
+			if (map[i][j] == 'E')
+			{
+				if ((j > 0 && map_copy[i][j - 1] == 'V')
+					|| (map_copy[i][j + 1] == 'V')
+					|| (i > 0 && map_copy[i - 1][j] == 'V')
+					|| (map_copy[i + 1][j] == 'V'))
+					return (true);
+			}
 			j++;
 		}
 		i++;
@@ -98,16 +104,16 @@ void	check_valid_path(t_game *game, t_map_check *check)
 {
 	char	**map_copy;
 	int		collectibles_found;
-	bool	exit_found;
+	bool	exit_reachable;
 
 	map_copy = duplicate_map(game);
 	collectibles_found = 0;
 	flood_fill(map_copy, check->player_x, check->player_y,
 		&collectibles_found);
-	exit_found = check_exit_found(map_copy, game->map);
+	exit_reachable = is_exit_reachable(map_copy, game->map);
 	strv_free(map_copy);
 	if (collectibles_found != check->collectible_count)
 		print_error_and_exit(game, "Not all collectibles are reachable");
-	if (!exit_found)
+	if (!exit_reachable)
 		print_error_and_exit(game, "Exit is not reachable");
 }
