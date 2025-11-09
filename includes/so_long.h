@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/04 17:07:03 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/08 23:36:56 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	check_valid_path(t_game *game, t_map_check *check);
 void	move_player(t_game *game, int keycode);
 void	key_hook(int keycode, t_game *game);
 int		exit_game(t_game *game);
-void	loop(t_game *game);
+bool	check_filename(char *filename);
 void	load_assets(t_game *game);
 char	**duplicate_map(t_game *game);
 void	flood_fill(char **map_copy, int x, int y, int *collectibles);

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:10:45 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/08 23:12:18 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/09 00:20:23 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,16 @@ void	flood_fill(char **map_copy, int x, int y, int *collectibles)
 	flood_fill(map_copy, x, y - 1, collectibles);
 }
 
-void	print_error_and_exit(t_game *game, char *message)
+bool	check_filename(char *filename)
 {
-	write(2, "Error\n", 6);
-	write(2, message, ft_strlen(message));
-	write(2, "\n", 1);
-	if (game->map)
-		strv_free(game->map);
-	exit(EXIT_FAILURE);
+	int	len;
+
+	len = ft_strlen(filename);
+	if (len < 5 || ft_strcmp(filename + len - 4, ".ber") != 0)
+		return (false);
+	if (filename[len - 5] == '/')
+		return (false);
+	if (filename[len - 5] == '.')
+		return (false);
+	return (true);
 }

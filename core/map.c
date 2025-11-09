@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:17:43 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/08 22:46:55 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/09 00:18:57 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ bool	load_map(t_game *game, char *filename)
 	int		fd;
 	char	**map;
 
+	if (!check_filename(filename))
+		print_error_and_exit(game, "Invalid file extention");
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		print_error_and_exit(game, "Could not open map file");
