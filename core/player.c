@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:00:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/09 14:59:40 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:24:07 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ static void	get_new_position(int keycode, int *new_i, int *new_j)
 		(*new_i)++;
 	else if (keycode == D_KEY)
 		(*new_j)++;
+}
+
+void	display_move_count(t_game *game)
+{
+	write(1, "Moves: ", 7);
+	game->moves++;
+	ft_putnbr_fd(game->moves, 1);
+	write(1, "\n", 1);
 }
 
 static void	update_player_position(t_game *game, int i, int j, int keycode)
@@ -50,6 +58,7 @@ static void	update_player_position(t_game *game, int i, int j, int keycode)
 		game->collectibles_remaining--;
 	game->map[i][j] = '0';
 	game->map[new_i][new_j] = 'P';
+	display_move_count(game);
 }
 
 void	move_player(t_game *game, int keycode)

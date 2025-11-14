@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:33:04 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/08 23:33:29 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:27:05 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	main(void)
 {
     char *str = "LOLOLOL";
     const char *dest = "LOK";
-    int s = ft_strcmp(dest, str);
+    int s = ft_strncmp(dest, str, 3);
     //printf("Last occurrence of %c in %s at %d" , dest, str, s - str);
 } */

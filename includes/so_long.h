@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:08 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/11/08 23:36:56 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:03:06 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../mlx.h"
 # include <stdbool.h>
-# include "libft/libft.h"
-# include "libft/get_next_line.h"
+# include "../mlx.h"
+# include "../libft/libft.h"
+# include "../libft/get_next_line.h"
 
 typedef struct s_pos
 {
@@ -62,6 +62,7 @@ typedef struct s_game
 	int			map_height;
 	int			player_direction;
 	int			collectibles_remaining;
+	int			moves;
 }	t_game;
 
 typedef struct s_map_check
@@ -74,6 +75,7 @@ typedef struct s_map_check
 }	t_map_check;
 
 t_img	*load_image_from_file(void *mlx, char *path);
+void	load_assets(t_game *game);
 void	free_image(void *mlx, t_img *image);
 void	ft_exit(t_game *game, int keycode);
 char	**strv_new(size_t size);
@@ -90,13 +92,11 @@ void	check_valid_path(t_game *game, t_map_check *check);
 void	move_player(t_game *game, int keycode);
 void	key_hook(int keycode, t_game *game);
 int		exit_game(t_game *game);
-bool	check_filename(char *filename);
-void	load_assets(t_game *game);
 char	**duplicate_map(t_game *game);
 void	flood_fill(char **map_copy, int x, int y, int *collectibles);
 void	count_map_elements(t_game *game, t_map_check *check);
-void	check_and_update_element(t_game *game,
-			t_map_check *check, char c, t_pos pos);
 void	render_map(t_game *game);
+void	display_move_count(t_game *game);
+bool	check_filename(char *filename);
 
 #endif

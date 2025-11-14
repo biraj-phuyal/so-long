@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:44:19 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/31 16:46:06 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:13:35 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 
 char	**strv_new(size_t size)
 {
-	char	**strv;
-	size_t	i;
-
-	strv = (char **)malloc(sizeof(char *) * (size + 1));
-	if (!strv)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		strv[i] = NULL;
-		i++;
-	}
-	strv[size] = NULL;
-	return (strv);
+	return (ft_calloc(sizeof(char *), size + 1));
 }
 
 static void	copy_strv_elements(char **dest, char **src, size_t *k)
