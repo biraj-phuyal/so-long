@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 18:29:05 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/31 16:46:17 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:47:23 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ t_img	*load_image_from_file(void *mlx, char *path)
 		free(image);
 		return (NULL);
 	}
-	image->data = mlx_get_data_addr(image->ptr, &image->bpp,
-			&image->size_l, &image->endian);
 	return (image);
 }
 

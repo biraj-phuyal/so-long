@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 00:00:00 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/10/31 16:44:19 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:12:26 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	init_game(t_game *game, char **argv)
 	game->mlx = mlx_init();
 	load_assets(game);
 	game->player_direction = 0;
+	game->moves = 0;
 	if (!load_map(game, argv[1]))
 	{
 		write(2, "Error\nCould not load map\n", 26);
