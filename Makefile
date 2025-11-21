@@ -6,12 +6,12 @@
 #    By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/19 21:06:49 by biphuyal          #+#    #+#              #
-#    Updated: 2025/11/08 23:33:56 by biphuyal         ###   ########.fr        #
+#    Updated: 2025/11/21 17:58:03 by biphuyal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 SRCS = core/free.c core/game.c core/main.c core/map.c core/map_validation.c core/player.c core/strv.c core/image.c core/utils.c \
 	   libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c libft/ft_isascii.c libft/ft_isprint.c \
