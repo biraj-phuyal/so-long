@@ -27,7 +27,7 @@ make re      # full rebuild
   <img src="assets/images/demo.png" alt="Architecture diagram" width="600">
 
 ```bash
-**Controls:** `W/A/S/D` or arrow keys to move, `ESC` or window close to quit.
+Controls: W/A/S/D, ESC or window close to quit.
 ```
 **HUD:** prints **move count** (on terminal).
 
