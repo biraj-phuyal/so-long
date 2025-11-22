@@ -24,11 +24,10 @@ make re      # full rebuild
 ./so_long assets/maps/valid_simple.ber
 ```
 
-  <img src="assets/images/demo.png" alt="Architecture diagram" width="600">
+<img src="assets/images/demo.png" alt="Architecture diagram" width="600">
 
-```bash
-Controls: W/A/S/D, ESC or window close to quit.
-```
+**Controls:** `W/A/S/D` to move, `ESC` or window close to quit.
+
 **HUD:** prints **move count** (on terminal).
 
 ## Map Format (`.ber`)
